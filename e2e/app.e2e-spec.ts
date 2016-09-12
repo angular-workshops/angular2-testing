@@ -1,10 +1,10 @@
-import { Ng2TestingWorkshopPage } from './app.po';
+import { Mission2MarsPage } from './app.po';
 
-describe('ng2-testing-workshop App', function() {
-  let page: Ng2TestingWorkshopPage;
+describe('mission-2-mars App', function() {
+  let page: Mission2MarsPage;
 
   beforeEach(() => {
-    page = new Ng2TestingWorkshopPage();
+    page = new Mission2MarsPage();
   });
 
   it('should display message saying app works', () => {

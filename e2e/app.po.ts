@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor/globals';
 
-export class Ng2TestingWorkshopPage {
+export class Mission2MarsPage {
   navigateTo() {
     return browser.get('/');
   }

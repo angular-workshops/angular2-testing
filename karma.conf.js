@@ -4,11 +4,13 @@
 module.exports = function (config) {
   config.set({
     basePath: './',
-    frameworks: ['jasmine', 'angular-cli'],
+    frameworks: ['jasmine', 'angular-cli', 'sinon', 'testdouble'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
+      require('karma-sinon'),
+      require('karma-testdouble'),
       require('angular-cli/plugins/karma')
     ],
     files: [
