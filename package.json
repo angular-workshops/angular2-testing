@@ -39,8 +39,6 @@
     "karma-sinon": "^1.0.5",
     "karma-testdouble": "^1.0.2",
     "protractor": "4.0.3",
-    "sinon": "^1.17.5",
-    "testdouble": "^1.6.1",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "^2.0.0"
