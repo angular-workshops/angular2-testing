@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor/globals';
 
-export class Mission2MarsPage {
+export class TourOfHeroesPage {
   navigateTo() {
     return browser.get('/');
   }

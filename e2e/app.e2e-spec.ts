@@ -1,10 +1,10 @@
-import { Mission2MarsPage } from './app.po';
+import { TourOfHeroesPage } from './app.po';
 
-describe('mission-2-mars App', function() {
-  let page: Mission2MarsPage;
+describe('Tour of Heroes App', function() {
+  let page: TourOfHeroesPage;
 
   beforeEach(() => {
-    page = new Mission2MarsPage();
+    page = new TourOfHeroesPage();
   });
 
   it('should display message saying app works', () => {
