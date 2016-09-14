@@ -3,6 +3,7 @@
   <div *ngFor="let hero of heroes" (click)="gotoDetail(hero)" class="col-1-4">
     <div class="module hero">
       <h4>{{hero.name}}</h4>
+      <p>Power: {{hero.strength | exponentialStrength : 3}}
     </div>
   </div>
 </div>

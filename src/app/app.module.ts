@@ -16,6 +16,7 @@ import { HeroDetailComponent }  from './hero-detail.component';
 import { HeroService }          from './hero.service';
 import { HeroSearchComponent }  from './hero-search.component';
 import { routing }              from './app.routing';
+import { ExponentialStrengthPipe } from './exponential-strength.pipe';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { routing }              from './app.routing';
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    ExponentialStrengthPipe
   ],
   providers: [
     HeroService,
