@@ -45,20 +45,13 @@ describe('App: Ng2TestingWorkshop', () => {
     expect(app.heroes.length).toEqual(4);
   }));
 
-  // it(`gotoDetail should call navigate with the right link`, async(() => {
-  //   let hero = { id: 22 };
+  it(`gotoDetail should call navigate with the right link`, async(() => {
+    let hero = { id: 22 };
 
-  //   let fixture = TestBed.createComponent(DashboardComponent);
-  //   let app = fixture.debugElement.componentInstance;
-  //   app.gotoDetail(hero);
+    let fixture = TestBed.createComponent(DashboardComponent);
+    let app = fixture.debugElement.componentInstance;
+    app.gotoDetail(hero);
 
-  //   td.verify(mockRouter.navigate(['/detail', 22]));
-  // }));
-
-  // it('should render title in a h1 tag', async(() => {
-  //   let fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   let compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('h1').textContent).toContain('Tour of Heroes');
-  // }));
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/detail', 22]);
+  }));
 });
