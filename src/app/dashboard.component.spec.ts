@@ -5,11 +5,12 @@ import { DashboardComponent } from './dashboard.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
 import { HeroService } from './hero.service';
+import { ExponentialStrengthPipe } from './exponential-strength.pipe';
 
 let mockHeroService = { getHeroes: () => {} };
 let mockRouter = jasmine.createSpyObj('router', ['navigate']);
 
-describe('App: Ng2TestingWorkshop', () => {
+describe('dashboard.component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -17,6 +18,7 @@ describe('App: Ng2TestingWorkshop', () => {
       ],
       declarations: [
         DashboardComponent,
+        ExponentialStrengthPipe
       ],
       providers: [
         {provide: Router, useValue: mockRouter},
