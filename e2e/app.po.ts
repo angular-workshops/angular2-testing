@@ -5,7 +5,7 @@ export class TourOfHeroesPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  getHeadingText() {
     return element(by.css('app-root h1')).getText();
   }
 }

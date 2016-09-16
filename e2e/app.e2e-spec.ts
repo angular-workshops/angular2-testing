@@ -9,6 +9,6 @@ describe('Tour Of Heroes App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getHeadingText()).toEqual('Tour of Heroes');
   });
 });
