@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent (shallow tests)', () => {
 
@@ -9,6 +10,7 @@ describe('AppComponent (shallow tests)', () => {
       declarations: [
         AppComponent
       ],
+      schemas: [NO_ERRORS_SCHEMA]
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.debugElement.componentInstance;

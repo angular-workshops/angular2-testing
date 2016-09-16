@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, fakeAsync, flushMicrotasks, tick } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
@@ -24,6 +25,7 @@ describe('dashboard.component', () => {
         {provide: Router, useValue: mockRouter},
         {provide: HeroService, useValue: mockHeroService}
       ],
+      schemas: [NO_ERRORS_SCHEMA]
     });
   });
 
