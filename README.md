@@ -1,4 +1,4 @@
-# Angular2 Testing Workshop (Tour of Heroes)
+# Angular2 Testing Workshop (Tour of Heroes) [![Build Status](https://travis-ci.org/angular-workshops/angular2-testing.svg?branch=master)](https://travis-ci.org/angular-workshops/angular2-testing)
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.8.
 
