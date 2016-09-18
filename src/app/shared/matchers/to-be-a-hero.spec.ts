@@ -12,3 +12,9 @@ beforeEach(() => {
     }
   });
 });
+
+declare module jasmine {
+  interface Matchers {
+      toBeAHero(): boolean;
+  }
+}

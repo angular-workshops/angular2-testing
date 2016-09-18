@@ -4,9 +4,4 @@
 
 declare var System: any;
 
-// Custom jasmine matchers
-declare module jasmine {
-  interface Matchers {
-      toBeAHero();
-  }
-}
+
