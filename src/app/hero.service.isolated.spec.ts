@@ -44,17 +44,17 @@ describe('Service: HeroService', () => {
     return {
       toPromise: () => {
         return new Promise((resolve, reject) => {
-          var fakeResponse = {
+          const fakeResponse = {
             json: () => {
               return {
                 data: heroes
-              }
+              };
             }
-          }
+          };
           resolve(fakeResponse);
-        })
+        });
       }
-    }
+    };
   }
 
 });
