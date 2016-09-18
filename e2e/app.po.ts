@@ -8,4 +8,8 @@ export class TourOfHeroesPage {
   getHeadingText() {
     return element(by.css('app-root h1')).getText();
   }
+
+  getTopHeroesText() {
+    return element(by.css('app-dashboard h3')).getText();
+  }
 }

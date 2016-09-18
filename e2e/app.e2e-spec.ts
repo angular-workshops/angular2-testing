@@ -11,4 +11,9 @@ describe('Tour Of Heroes App', function() {
     page.navigateTo();
     expect(page.getHeadingText()).toEqual('Tour of Heroes');
   });
+
+  it('should display the top heroes text', () => {
+    page.navigateTo();
+    expect(page.getTopHeroesText()).toEqual('Top Heroes');
+  })
 });
