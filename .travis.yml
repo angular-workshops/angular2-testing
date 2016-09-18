@@ -10,7 +10,7 @@ env:
     - CHROME_BIN=chromium-browser
 cache:
   directories:
-    - node_modules
+    - tour-of-heroes/node_modules
 before_script:
   - sh -e /etc/init.d/xvfb start
 install:
