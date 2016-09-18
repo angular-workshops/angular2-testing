@@ -1,10 +1,5 @@
-/* tslint:disable:no-unused-variable */
-
-import { async, fakeAsync, inject, flushMicrotasks } from '@angular/core/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
 import { HeroService } from './hero.service';
 import { Injectable } from '@angular/core';
-import { Http, ConnectionBackend, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
 
 
 @Injectable()
@@ -34,7 +29,7 @@ describe('Service: HeroService', () => {
       mockHttp.get.and.returnValue(createMockGetCallForAllHeroes());
 
       service.getHeroes().then(retval => {
-        expect(retval).toBe([heroes]);
+        expect(retval).toBe(heroes);
         done();
       });
 
