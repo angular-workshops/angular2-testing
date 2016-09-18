@@ -8,7 +8,9 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "pretravis": "ng build",
+    "travis": "concurrently --success first --kill-others \"lite-server\" \"npm run e2e\""
   },
   "private": true,
   "dependencies": {
@@ -30,6 +32,7 @@
     "@types/jasmine": "^2.2.30",
     "angular-cli": "1.0.0-beta.14",
     "codelyzer": "~0.0.26",
+    "concurrently": "^2.2.0",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
@@ -37,6 +40,7 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
+    "lite-server": "^2.2.2",
     "protractor": "4.0.5",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
