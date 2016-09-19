@@ -1,16 +1,4 @@
 import { HeroService } from './hero.service';
-import { Injectable } from '@angular/core';
-
-
-@Injectable()
-class TestClass {
-  constructor() {
-  }
-
-  doSomething() {
-    return 5;
-  }
-}
 
 describe('Service: HeroService', () => {
   let heroes;
