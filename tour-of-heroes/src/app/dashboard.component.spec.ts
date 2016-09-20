@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, fakeAsync, flushMicrotasks, tick } from '@angular/core/testing';
+import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { Router } from '@angular/router';
@@ -44,7 +44,7 @@ describe('dashboard.component', () => {
     let app = fixture.debugElement.componentInstance;
 
     app.ngOnInit();
-    flushMicrotasks();
+    tick();
 
     expect(app.heroes.length).toEqual(4);
   }));

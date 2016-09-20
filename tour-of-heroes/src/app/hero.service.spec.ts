@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, fakeAsync, inject, flushMicrotasks } from '@angular/core/testing';
+import { TestBed, async, fakeAsync, inject, tick } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { HeroService } from './hero.service';
 import { Http, ConnectionBackend, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
@@ -37,7 +37,7 @@ describe('Service: HeroService', () => {
           matchingHero = hero;
         });
         connection.mockRespond(createResponse(heroes));
-        flushMicrotasks();
+        tick();
 
         expect(matchingHero.id).toBe(4);
         expect(matchingHero.name).toBe('Dynama');
@@ -51,7 +51,7 @@ describe('Service: HeroService', () => {
           matchingHero = hero;
         });
         connection.mockRespond(createResponse(heroes));
-        flushMicrotasks();
+        tick();
 
         expect(matchingHero).toBeUndefined();
     })));

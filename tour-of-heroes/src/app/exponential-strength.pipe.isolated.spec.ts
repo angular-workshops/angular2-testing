@@ -8,6 +8,6 @@ describe('Pipe: ExponentialStrength', () => {
 
   it('should use "1" for the exponent if not provided', () => {
     let pipe = new ExponentialStrengthPipe();
-    expect(pipe.transform(5, '')).toEqual(5);
+    expect(pipe.transform(5, '')).toEqual(5); 
   });
 });

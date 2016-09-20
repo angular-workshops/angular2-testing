@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+// ANGULARCONNECT: REMOVE THIS FOR THE STARTING POINT
+import { Location } from '@angular/common';
 
 import { Hero }        from './hero';
 import { HeroService } from './hero.service';
@@ -14,7 +16,8 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private heroService: HeroService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private location: Location) {
   }
 
   ngOnInit(): void {
@@ -27,11 +30,13 @@ export class HeroDetailComponent implements OnInit {
 
   save(): void {
     this.heroService.update(this.hero)
-      .then(this.goBack);
+      .then(() => this.goBack); // ANGULARCONNECT: the lambda in here is to fix a context issue
   }
 
   goBack(): void {
-    window.history.back();
+    // ANGULARCONNECT: REMOVE THIS FOR THE STARTING POINT, COMMENT IN THE OTHER LINE
+    this.location.back();
+    // window.history.back();
   }
 }
 
