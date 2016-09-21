@@ -4,7 +4,7 @@ import { HeroService } from './hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
-// you must import this so that [(ngModel)] is recognized. 
+// you must import this so that [(ngModel)] is recognized.
 // otherwise the NO_ERRORS_SCHEMA will hide that angular doesn't
 // know about ngModel
 import { FormsModule }   from '@angular/forms';
@@ -53,11 +53,11 @@ describe('HeroDetailComponent (shallow tests)', () => {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    
+
     expect(element.querySelector('div').textContent).toContain('id: 3');
     expect(element.querySelector('div').textContent).toContain('Magneta');
   }));
-  
+
   it(`should call update on the hero service when save is clicked`, fakeAsync(() => {
 
     fixture.detectChanges();
@@ -81,7 +81,7 @@ describe('HeroDetailComponent (shallow tests)', () => {
 
     expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toContain('Mr. Nice');
   }));
-  
+
 });
 
 function newEvent(eventName: string, bubbles = false, cancelable = false) {
