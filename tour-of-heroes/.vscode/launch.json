@@ -6,7 +6,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
-      "stopOnEntry": true,
+      "stopOnEntry": false,
       "args": ["protractor.conf.js"],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
