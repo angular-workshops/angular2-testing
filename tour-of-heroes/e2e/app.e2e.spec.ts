@@ -15,7 +15,6 @@ describe('App', function() {
 
   it('should display the top heroes text', () => {
     page.navigateTo();
-    browser.debugger();
     expect(page.getTopHeroesText()).toEqual('Top Heroes');
   });
 });
