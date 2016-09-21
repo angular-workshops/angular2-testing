@@ -82,16 +82,11 @@ describe('HeroDetailComponent (shallow tests)', () => {
     fixture.detectChanges();
 
     let e = fixture.debugElement.query(By.css('input')).nativeElement;
-    // console.log(e.outerHTML);
-    // component.hero.name = 'Joe';
     e.value = 'Joe';
     e.dispatchEvent(newEvent('input'))
     fixture.detectChanges();
-    // console.log(component.hero);
-    // tick();
 
     expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toContain('Joe');
-    // expect(mockHeroService.update).toHaveBeenCalledWith(heroes[0]);
   }));
 
   
