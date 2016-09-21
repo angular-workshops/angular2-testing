@@ -1,5 +1,4 @@
-import {browser, element, by} from 'protractor/globals';
-import {ElementFinder} from 'protractor';
+import {browser, element, by, ElementFinder} from 'protractor';
 
 export class HeroesPage {
 

@@ -1,4 +1,4 @@
-import {browser} from 'protractor/globals';
+import {browser} from 'protractor';
 import { AppPage } from './page-objects/app-page';
 
 describe('App', function() {

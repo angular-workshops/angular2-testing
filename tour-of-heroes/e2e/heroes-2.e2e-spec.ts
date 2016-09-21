@@ -1,4 +1,4 @@
-import {browser, element, by} from 'protractor/globals';
+import {browser, element, by} from 'protractor';
 // import {saveScreenshot} from './screenshot';
 import {HeroesPage} from './page-objects/heroes-page';
 

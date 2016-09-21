@@ -1,5 +1,5 @@
 import {ensureDirSync, outputFileSync} from 'fs-extra';
-import {browser} from 'protractor/globals';
+import {browser} from 'protractor';
 
 export function saveScreenshot(filename) {
   ensureDirSync('tmp/screenshots');
