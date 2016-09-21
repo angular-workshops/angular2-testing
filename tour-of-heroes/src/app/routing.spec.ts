@@ -51,7 +51,7 @@ describe('Integration', () => {
   xit('should navigate when the link is clicked',
       fakeAsync(inject([Router, Location], (router: Router, location: Location) => {
     const fixture = createRoot(router, RootComponent);
-    let element = fixture.debugElement.query(By.css('a'))
+    let element = fixture.debugElement.query(By.css('a'));
 
     router.navigateByUrl('/');
     advance(fixture);

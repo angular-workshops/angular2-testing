@@ -3,14 +3,14 @@ import { tick, fakeAsync } from '@angular/core/testing';
 
 describe('HeroDetailComponent (isolated tests)', () => {
   let heroes = [
-    {id: 3, name: 'UltimaMan', strength:4},
-    {id: 4, name: 'Dynama', strength:2}
+    {id: 3, name: 'Magneta', strength: 4},
+    {id: 4, name: 'Dynama', strength: 2}
   ];
 
   beforeEach(() => {
     this.mockHeroService = { getHero: () => {}, update: () => {} };
     this.mockActivatedRoute = {params: []};
-    this.mockLocation = { back: () => {} }
+    this.mockLocation = { back: () => {} };
   });
 
   it('should grab the right hero on init', fakeAsync(() => {
@@ -54,6 +54,6 @@ describe('HeroDetailComponent (isolated tests)', () => {
     expect(this.mockHeroService.update).toHaveBeenCalledWith(heroes[1]);
   }));
 
-  
+
 
 });
