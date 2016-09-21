@@ -1,18 +1,12 @@
-/* write tests for:
-clicking save
-clicking back
-changing the name input box
-the hero name & hero id correctly show up
-*/
-// THEN DECIDE WHAT HOMEWORK TO SHOW
-
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from './hero.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
+// you must import this so that [(ngModel)] is recognized. 
+// otherwise the NO_ERRORS_SCHEMA will hide that angular doesn't
+// know about ngModel
 import { FormsModule }   from '@angular/forms';
 
 describe('HeroDetailComponent (shallow tests)', () => {
@@ -39,8 +33,7 @@ describe('HeroDetailComponent (shallow tests)', () => {
         { provide: HeroService, useValue: templateHeroService },
         { provide: ActivatedRoute, useValue: templateActivatedRoute },
         { provide: Location, useValue: templateLocation }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      ]
     });
 
     fixture = TestBed.createComponent(HeroDetailComponent);
@@ -81,16 +74,13 @@ describe('HeroDetailComponent (shallow tests)', () => {
     tick();
     fixture.detectChanges();
 
-    let e = fixture.debugElement.query(By.css('input')).nativeElement;
-    e.value = 'Joe';
-    e.dispatchEvent(newEvent('input'))
+    let el = fixture.debugElement.query(By.css('input')).nativeElement;
+    el.value = 'Mr. Nice';
+    el.dispatchEvent(newEvent('input')); // this must be called so that detectChanges will know that something has changed
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toContain('Joe');
+    expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toContain('Mr. Nice');
   }));
-
-  
-
   
 });
 
