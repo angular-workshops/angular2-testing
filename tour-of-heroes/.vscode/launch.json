@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Protractor",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
+      "stopOnEntry": true,
+      "args": ["protractor.conf.js"],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "internalConsole",
+      "sourceMaps": true,
+      "outDir": null
+    }
+  ]
+}
