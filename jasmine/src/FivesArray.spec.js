@@ -25,13 +25,13 @@ describe("join", function() {
     });
   });
 
-  it('should be empty if 0 is passed', function() {
+  xit('should be empty if 0 is passed', function() {
     var a = fives.create(0);
     expect(a.length).toBe(0);
   })
 
   // with a custom matcher
-  it('should be empty if 0 is passed [custom matcher]', function() {
+  xit('should be empty if 0 is passed [custom matcher]', function() {
     var a = fives.create(0);
     expect(a).toBeEmptyArray();
   })
