@@ -1,3 +1,4 @@
+import {browser} from 'protractor/globals';
 import { TourOfHeroesPage } from './app.po';
 
 describe('Tour Of Heroes App', function() {
@@ -14,6 +15,7 @@ describe('Tour Of Heroes App', function() {
 
   it('should display the top heroes text', () => {
     page.navigateTo();
+    browser.debugger();
     expect(page.getTopHeroesText()).toEqual('Top Heroes');
-  })
+  });
 });
