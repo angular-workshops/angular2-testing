@@ -1,11 +1,11 @@
 import {browser} from 'protractor/globals';
-import { TourOfHeroesPage } from './app.po';
+import { AppPage } from './page-objects/app-page';
 
-describe('Tour Of Heroes App', function() {
-  let page: TourOfHeroesPage;
+describe('App', function() {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new TourOfHeroesPage();
+    page = new AppPage();
   });
 
   it('should display message saying app works', () => {
