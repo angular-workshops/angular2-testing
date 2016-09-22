@@ -7,6 +7,6 @@ function Reverser() {}
 
 Reverser.prototype.reverseNumber = function(n)
 {
-	n = n + "";
-	return n.split("").reverse().join("");
+	n = n + '';
+	return n.split('').reverse().join('');
 }
