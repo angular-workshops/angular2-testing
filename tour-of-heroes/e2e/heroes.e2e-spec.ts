@@ -1,5 +1,4 @@
 import {browser, element, by} from 'protractor';
-// import {saveScreenshot} from './screenshot';
 
 describe('Heroes page', () => {
   beforeEach(() => {
@@ -8,7 +7,6 @@ describe('Heroes page', () => {
 
   it('should display the page title', () => {
     expect(element(by.css('app-heroes h2')).getText()).toEqual('My Heroes');
-    // saveScreenshot('hero-screenshot');
   });
 
   it('should show the Heroes nav link as active', () => {

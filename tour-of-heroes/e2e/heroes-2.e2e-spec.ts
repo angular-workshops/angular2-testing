@@ -1,5 +1,4 @@
 import {browser} from 'protractor';
-// import {saveScreenshot} from './screenshot';
 import {HeroesPage} from './page-objects/heroes-page';
 
 describe('Heroes page (using Page Object)', () => {
@@ -11,7 +10,6 @@ describe('Heroes page (using Page Object)', () => {
 
   it('should display the page title', () => {
     expect(heroesPage.getHeadingText()).toEqual('My Heroes');
-    // saveScreenshot('hero-screenshot');
   });
 
   it('should show the Heroes nav link as active', () => {
