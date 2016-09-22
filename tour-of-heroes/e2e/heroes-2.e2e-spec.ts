@@ -1,4 +1,4 @@
-import {browser, element, by} from 'protractor';
+import {browser} from 'protractor';
 // import {saveScreenshot} from './screenshot';
 import {HeroesPage} from './page-objects/heroes-page';
 
@@ -24,8 +24,8 @@ describe('Heroes page (using Page Object)', () => {
     expect(heroesPage.getHeroesList().count()).toEqual(10);
 
     const firstHero = heroesPage.getFirstHero();
-    expect(firstHero.element(by.css('span.badge')).getText()).toEqual('11');
-    expect(firstHero.element(by.css('span:not(.badge)')).getText()).toEqual('Mr. Nice');
+    expect(heroesPage.getHeroBadgeText(firstHero)).toEqual('11');
+    expect(heroesPage.getHeroName(firstHero)).toEqual('Mr. Nice');
   });
 
   it('should add a new hero when I enter a name and click the "add" button', () => {
@@ -38,10 +38,8 @@ describe('Heroes page (using Page Object)', () => {
   });
 
   it('should remove a hero from the list when I click its delete button', () => {
-    const heroesList = element.all(by.css('app-heroes li'));
-
     heroesPage.deleteHero(heroesPage.getFirstHero());
-    const firstHero = heroesList.first();
+    const firstHero = heroesPage.getFirstHero();
 
     expect(heroesPage.getHeroesList().count()).toEqual(9);
     expect(heroesPage.getHeroBadgeText(firstHero)).toEqual('12');
