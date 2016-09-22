@@ -35,6 +35,7 @@ describe('dashboard.component', () => {
     expect(app).toBeTruthy();
   }));
 
+  // this test will point out the bug with the slice command in the dashboard.component.spec.ts file
   it(`should have the heroes its given`, fakeAsync(() => {
     let p = new Promise((resolve, reject) => {
       resolve([ 1, 2, 3, 4]);
