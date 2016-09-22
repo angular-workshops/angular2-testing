@@ -4,6 +4,8 @@ import {browser} from 'protractor';
 export function saveScreenshot(filename) {
   ensureDirSync('tmp/screenshots');
   return browser.takeScreenshot().then((png) => {
-    outputFileSync('tmp/screenshots/' + filename + '-' + Date.now() + '.png', new Buffer(png, 'base64'));
+    filename = 'tmp/screenshots/' + filename + '-' + Date.now() + '.png';
+    console.log('Saving screenshot:', filename);
+    outputFileSync(filename, new Buffer(png, 'base64'));
   });
 }
