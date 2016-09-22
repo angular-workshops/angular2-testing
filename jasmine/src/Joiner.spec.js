@@ -6,12 +6,12 @@ describe('join', function() {
     joiner = new Joiner();
   });
 
-  it('should be able to join an simple array with a simple string separator', function() {
+  it('should join an array with a separator', function() {
     var joined = joiner.join([1,2], '-');
     expect(joined).toEqual('1-2');
   });
 
-  it('should be able to join an empty array with something and return an empty string', function() {
+  it('should return an empty string when joining an empty array', function() {
     var joined = joiner.join([], ',');
     expect(joined).toEqual('');
   });
