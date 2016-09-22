@@ -4,7 +4,7 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 
 ## Getting Started
 
-Install the Angular CLI globally: `npm install -g angular-cli@webpack`
+Install the Angular CLI globally: `npm install -g angular-cli`
 Install the local dependencies: `npm install`
 
 ## Development server
