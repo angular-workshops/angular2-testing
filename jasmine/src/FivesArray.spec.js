@@ -1,6 +1,5 @@
+describe('FivesArray', function() {
 
-// this will be written up as demonstration. This is the finished code
-describe("join", function() {
   var fives;
 
   beforeEach(function() {
@@ -9,15 +8,12 @@ describe("join", function() {
 
   beforeEach(function () {
     jasmine.addMatchers({
-      toBeEmptyArray: function () {
+      toBeEmptyArray: function toBeEmptyArrayMatcher() {
         return {
-          compare: function (actual, expected) {
-            var array = actual;
-
+          compare: function isEmptyComparer(array) {
             return {
               pass: array.length === 0,
               message: 'Expected [' + array + '] to have no elements'
-
             };
           }
         };
@@ -25,20 +21,11 @@ describe("join", function() {
     });
   });
 
-  xit('should be empty if 0 is passed', function() {
-    var a = fives.create(0);
-    expect(a.length).toBe(0);
-  })
+  describe("create", function() {
 
-  // with a custom matcher
-  xit('should be empty if 0 is passed [custom matcher]', function() {
-    var a = fives.create(0);
-    expect(a).toBeEmptyArray();
-  })
-
+    xit('should be empty if 0 is passed [custom matcher]', function() {
+      var a = fives.create(0);
+      expect(a).toBeEmptyArray();
+    })
+  });
 });
-
-
-
-
-
