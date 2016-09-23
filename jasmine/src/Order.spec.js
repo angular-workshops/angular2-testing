@@ -1,5 +1,4 @@
-// this will be written up as demonstration. This is the finished code
-describe("Order", function() {
+describe('Order', function() {
   var order, customer;
 
   beforeEach(function() {
@@ -7,18 +6,11 @@ describe("Order", function() {
     order = new Order(customer);
   });
 
-  it("unpreferred customers get no discount", function() {
-    spyOn(customer, 'isPreferred').and.returnValue(false)
-    
-    order.addItem('foos', 10);
-    expect(order.getTotal()).toEqual(10);
-  });
+  describe('addItem(name, cost)', function() {
+    it('should not discount unpreferred customers', function() {
+    });
 
-  it("preferred customers get a 10% discount", function() {
-    spyOn(customer, 'isPreferred').and.returnValue(true);
-    
-    order.addItem('foos', 10);
-    expect(order.getTotal()).toEqual(9);
+    it('should give preferred customers a 10% discount', function() {
+    });
   });
-
 });
