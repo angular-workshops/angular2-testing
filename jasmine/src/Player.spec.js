@@ -12,7 +12,7 @@ describe("Player", function() {
     it("should update currentlyPlayingSong and playing", function() {
       player.play(song);
       expect(player.currentlyPlayingSong).toEqual(song);
-      expect(player.playing).toBe(true);
+      expect(player.isPlaying).toBe(true);
     });
 
     // demonstrates custom matcher
