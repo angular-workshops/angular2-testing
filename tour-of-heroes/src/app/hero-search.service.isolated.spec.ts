@@ -1,22 +1,18 @@
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import {ResponseOptions, Response} from '@angular/http';
+import { ResponseOptions, Response } from '@angular/http';
 import { HeroSearchService } from './hero-search.service';
 import { Hero } from './hero';
 
-
 describe('HeroSearchService', () => {
-  let mockHttp: { get: jasmine.Spy };
-  let service: HeroSearchService;
-
-  beforeEach(() => {
-    mockHttp = jasmine.createSpyObj('http', ['get']);
-    service = new HeroSearchService(mockHttp as any);
-  });
 
   it('should make a request via http', () => {
     const expectedResults = [new Hero(), new Hero()];
-    mockHttp.get.and.returnValue(createResponse(expectedResults));
+    const mockResponse = new Response(new ResponseOptions({ body: { data: expectedResults } }));
+
+    const mockHttp = jasmine.createSpyObj('http', ['get']);
+    mockHttp.get.and.returnValue(Observable.of(mockResponse));
+
+    const service = new HeroSearchService(mockHttp as any);
 
     let actualResults;
     service.search('mysearch').subscribe((value) => { actualResults = value; });
@@ -25,8 +21,3 @@ describe('HeroSearchService', () => {
     expect(actualResults).toEqual(expectedResults);
   });
 });
-
-function createResponse(data) {
-  const response = new Response(new ResponseOptions({ body: { data } }));
-  return Observable.of(response);
-}

@@ -1,8 +1,6 @@
 import { HeroService } from './hero.service';
-import { Observable } from 'rxjs/Observable';
-import { ResponseOptions, Response } from '@angular/http';
 
-describe('Service: HeroService', () => {
+describe('Service: HeroService (pure)', () => {
 
   it('should return the correct hero when called with a valid id', (done) => {
 
@@ -11,10 +9,16 @@ describe('Service: HeroService', () => {
       {id: 4, name: 'Dynama'}
     ];
 
-    const mockResponse = new Response(new ResponseOptions({ body: {data: heroes} }));
+    const mockResponse = {
+      toPromise: () => {
+        return new Promise((resolve, reject) => {
+          resolve({ json: () => ({ data: heroes }) });
+        });
+      }
+    };
 
     const mockHttp = jasmine.createSpyObj('mockHttp', ['get', 'post', 'put', 'delete']);
-    mockHttp.get.and.returnValue(Observable.of(mockResponse));
+    mockHttp.get.and.returnValue(mockResponse);
 
     let service = new HeroService(mockHttp);
 
