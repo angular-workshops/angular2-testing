@@ -1,5 +1,4 @@
-// this code will also be written during the demonstration
-describe('Player', function() {
+describe("Player", function() {
   var player;
   var song;
 
@@ -8,32 +7,40 @@ describe('Player', function() {
     song = new Song();
   });
 
-  //demonstrates use of custom matcher
-  it('should be able to play a Song', function() {
-    player.play(song);
-    expect(player.currentlyPlayingSong).toEqual(song);
+  describe('play(song)', function() {
 
-    expect(player).toBePlaying(song);
+    it("should update currentlyPlayingSong and playing", function() {
+      player.play(song);
+      expect(player.currentlyPlayingSong).toEqual(song);
+      expect(player.playing).toBe(true);
+    });
+
+    // demonstrates custom matcher
+    it('should play the song', function() {
+      player.play(song);
+      expect(player).toBePlaying(song);
+    });
   });
 
-  // demonstrates use of spies to intercept and test method calls
-  it('tells the current song if the user has made it a favorite', function() {
-    spyOn(song, 'persistFavoriteStatus');
+  describe('makeFavorite()', function() {
+    // demonstrates use of spies to intercept and test method calls
+    it("should update the song that it is a favorite", function() {
+      spyOn(song, 'persistFavoriteStatus');
 
-    player.play(song);
-    player.makeFavorite();
+      player.play(song);
+      player.makeFavorite();
 
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+      expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+    });
+
+    // same as above except with createSpyObj()
+    it("should update the song that it is a favorite", function() {
+      var song = jasmine.createSpyObj('song', ['persistFavoriteStatus']);
+
+      player.play(song);
+      player.makeFavorite();
+
+      expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+    });
   });
-
-  // same as above except with createSpyObj()
-  it('tells the current song if the user has made it a favorite', function() {
-    var song = jasmine.createSpyObj('song', ['persistFavoriteStatus']);
-
-    player.play(song);
-    player.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-  });
-
 });
