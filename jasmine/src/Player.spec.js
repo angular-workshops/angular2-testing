@@ -1,4 +1,3 @@
-// this code will also be written during the demonstration
 describe("Player", function() {
   var player;
   var song;
