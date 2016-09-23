@@ -1,4 +1,3 @@
-// this will be written up as demonstration. This is the finished code
 describe('Order', function() {
   var order, customer;
 
@@ -7,18 +6,19 @@ describe('Order', function() {
     order = new Order(customer);
   });
 
-  it('unpreferred customers get no discount', function() {
-    spyOn(customer, 'isPreferred').and.returnValue(false)
+  describe('addItem', function() {
+    it('should not discount unpreferred customers', function() {
+      spyOn(customer, 'isPreferred').and.returnValue(false)
 
-    order.addItem('foos', 10);
-    expect(order.getTotal()).toEqual(10);
+      order.addItem('foos', 10);
+      expect(order.getTotal()).toEqual(10);
+    });
+
+    it('should give preferred customers a 10% discount', function() {
+      spyOn(customer, 'isPreferred').and.returnValue(true);
+
+      order.addItem('foos', 10);
+      expect(order.getTotal()).toEqual(9);
+    });
   });
-
-  it('preferred customers get a 10% discount', function() {
-    spyOn(customer, 'isPreferred').and.returnValue(true);
-
-    order.addItem('foos', 10);
-    expect(order.getTotal()).toEqual(9);
-  });
-
 });
