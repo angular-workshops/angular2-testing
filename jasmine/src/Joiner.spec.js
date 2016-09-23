@@ -1,35 +1,36 @@
-// this will be written up as demonstration. This is the finished code
-describe('join', function() {
+describe('Joiner', function() {
   var joiner;
 
   beforeEach(function() {
     joiner = new Joiner();
   });
 
-  it('should join an array with a separator', function() {
-    var joined = joiner.join([1,2], '-');
-    expect(joined).toEqual('1-2');
-  });
+  describe('join(array, separator)', function() {
 
-  it('should return an empty string when joining an empty array', function() {
-    var joined = joiner.join([], ',');
-    expect(joined).toEqual('');
-  });
+    it('should return a string with each array item joined by the separator', function() {
+      var joined = joiner.join([1, 2, 3], '-');
+      expect(joined).toEqual('1-2-3');
+    });
 
-  it('should default to a comma string separator', function() {
-    var joined = joiner.join([3,4]);
-    expect(joined).toEqual('3,4');
-  });
+    it('should return an empty string if array is empty', function() {
+      var joined = joiner.join([], ',');
+      expect(joined).toEqual('');
+    });
 
-  it('should work with an empty string separator', function() {
-    var joined = joiner.join([3,4], '');
-    expect(joined).toEqual('34');
-  });
+    it('should join with a comma if no separator is provided', function() {
+      var joined = joiner.join([3,4]);
+      expect(joined).toEqual('3,4');
+    });
 
-  it('should error when not passed an array', function() {
-    expect(function() {
-      joiner.join({}, ',')
-    }).toThrow();
-  });
+    it('should work with an empty string separator', function() {
+      var joined = joiner.join([3,4], '');
+      expect(joined).toEqual('34');
+    });
 
+    it('should error when not passed an array', function() {
+      expect(function() {
+        joiner.join({}, ',')
+      }).toThrow();
+    });
+  });
 });
