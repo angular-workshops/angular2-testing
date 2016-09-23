@@ -6,7 +6,7 @@ describe('Order', function() {
     order = new Order(customer);
   });
 
-  describe('addItem', function() {
+  describe('addItem(name, cost)', function() {
     it('should not discount unpreferred customers', function() {
       spyOn(customer, 'isPreferred').and.returnValue(false)
 
