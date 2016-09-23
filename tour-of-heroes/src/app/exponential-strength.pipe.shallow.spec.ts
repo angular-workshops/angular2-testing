@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ExponentialStrengthPipe } from './exponential-strength.pipe';
 
 @Component({
@@ -14,14 +14,13 @@ describe('exponential-strength.pipe', () => {
       declarations: [
         ExponentialStrengthPipe,
         ContainerComponent
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      ]
     });
   });
 
   it('should show the strength', () => {
     let fixture = TestBed.createComponent(ContainerComponent);
-    let element = fixture.debugElement.nativeElement;
+    let element = fixture.nativeElement;
     fixture.detectChanges();
     expect(element.textContent).toContain('25');
   });
