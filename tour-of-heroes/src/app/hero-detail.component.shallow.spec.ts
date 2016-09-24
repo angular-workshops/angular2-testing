@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick, async, ComponentFixture } from '@angular/core/testing';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from './hero.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,12 +10,12 @@ import { By } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
 describe('HeroDetailComponent (shallow tests)', () => {
-  let fixture, component, element, templateHeroService, templateActivatedRoute, templateLocation, mockHeroService;
+  let fixture: ComponentFixture<HeroDetailComponent>;
+  let component, element, templateHeroService, templateActivatedRoute, templateLocation, mockHeroService;
   let heroes = [
     {id: 3, name: 'Magneta', strength: 4},
     {id: 4, name: 'Dynama', strength: 2}
   ];
-
 
   beforeEach(() => {
     templateHeroService = { getHero: () => {}, update: () => {} };
@@ -48,6 +48,28 @@ describe('HeroDetailComponent (shallow tests)', () => {
     spyOn(mockHeroService, 'update').and.returnValue(Promise.resolve());
   });
 
+  // Demonstrates using `async` and `detectChanges`
+  it(`should have the correct hero's name & id`, async(() => {
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(element.querySelector('div').textContent).toContain('id: 3');
+      expect(element.querySelector('div').textContent).toContain('Magneta');
+    });
+  }));
+
+  // Demonstrates using `async` and `autoDetectChanges`
+  it(`should have the correct hero's name & id`, async(() => {
+
+    fixture.autoDetectChanges();
+    fixture.whenStable().then(() => {
+      expect(element.querySelector('div').textContent).toContain('id: 3');
+      expect(element.querySelector('div').textContent).toContain('Magneta');
+    });
+  }));
+
+  // Demonstrates using fakeAsync
   it(`should have the correct hero's name & id`, fakeAsync(() => {
 
     fixture.detectChanges();
