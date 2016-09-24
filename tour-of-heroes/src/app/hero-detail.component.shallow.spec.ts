@@ -2,113 +2,132 @@ import { TestBed, fakeAsync, tick, async, ComponentFixture } from '@angular/core
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from './hero.service';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
-// you must import this so that [(ngModel)] is recognized.
-// otherwise the NO_ERRORS_SCHEMA will hide that angular doesn't
-// know about ngModel
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, NgModel }   from '@angular/forms';
 
-describe('HeroDetailComponent (shallow tests)', () => {
+fdescribe('HeroDetailComponent (shallow tests)', () => {
   let fixture: ComponentFixture<HeroDetailComponent>;
-  let component, element, templateHeroService, templateActivatedRoute, templateLocation, mockHeroService;
+  let component: HeroDetailComponent;
+  let element,  mockHeroService;
   let heroes = [
     {id: 3, name: 'Magneta', strength: 4},
     {id: 4, name: 'Dynama', strength: 2}
   ];
 
   beforeEach(() => {
-    templateHeroService = { getHero: () => {}, update: () => {} };
-    templateActivatedRoute = {params: [{id: '3'}]};
-    templateLocation = { back: () => {}};
+    mockHeroService = { getHero: () => {}, update: () => {} };
+    spyOn(mockHeroService, 'getHero').and.returnValue(Promise.resolve(heroes[0]));
+    spyOn(mockHeroService, 'update').and.returnValue(Promise.resolve());
+
+    const mockActiveRoute = {params: [{id: '3'}]};
 
     TestBed.configureTestingModule({
       imports: [
+        // you must import this so that [(ngModel)] is recognized.
         FormsModule
       ],
       declarations: [
         HeroDetailComponent
       ],
       providers: [
-        { provide: HeroService, useValue: templateHeroService },
-        { provide: ActivatedRoute, useValue: templateActivatedRoute },
-        { provide: Location, useValue: templateLocation }
+        // useValue creates a clone of our service object
+        { provide: HeroService, useFactory: () => mockHeroService },
+        { provide: ActivatedRoute, useFactory: () => mockActiveRoute }
+      ],
+      schemas: [
+        // NO_ERRORS_SCHEMA will hide that angular doesn't know about ngModel
       ]
     });
 
     fixture = TestBed.createComponent(HeroDetailComponent);
-    component = fixture.debugElement.componentInstance;
-    element = fixture.debugElement.nativeElement;
+    component = fixture.componentInstance;
+    element = fixture.nativeElement;
   });
 
-  beforeEach(() => {
-    let retPromise = Promise.resolve(heroes[0]);
-    mockHeroService = TestBed.get(HeroService);
-    spyOn(mockHeroService, 'getHero').and.returnValue(retPromise);
-    spyOn(mockHeroService, 'update').and.returnValue(Promise.resolve());
-  });
+  describe('initial display', () => {
 
-  // Demonstrates using `async` and `detectChanges`
-  it(`should have the correct hero's name & id`, async(() => {
+    it('should show the correct hero name & id (using async and detectChanges)', async(() => {
 
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
       fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        expect(element.querySelector('div').textContent).toContain('id: 3');
+        expect(element.querySelector('div').textContent).toContain('Magneta');
+      });
+    }));
+
+    it('should show the correct hero name & id (using async and autoDetectChanges)', async(() => {
+
+      fixture.autoDetectChanges();
+      fixture.whenStable().then(() => {
+        expect(element.querySelector('div').textContent).toContain('id: 3');
+        expect(element.querySelector('div').textContent).toContain('Magneta');
+      });
+    }));
+
+    it('should show the correct hero name & id (using fakeAsync and tick)', fakeAsync(() => {
+
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+
       expect(element.querySelector('div').textContent).toContain('id: 3');
       expect(element.querySelector('div').textContent).toContain('Magneta');
+    }));
+  });
+
+  describe('name input changing', () => {
+    beforeEach(fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+    }));
+
+    it(`should change the hero's name (via nativeElement API)`, fakeAsync(() => {
+      const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+
+      inputElement.value = 'Mr. Nice';
+      inputElement.dispatchEvent(createEvent('input')); // this must be called so that detectChanges will know that something has changed
+      fixture.detectChanges();
+
+      expect(getHeadingText(fixture)).toContain('Mr. Nice');
+    }));
+
+    it(`should change the hero's name (via debugElement API)`, () => {
+      const ngModel = fixture.debugElement.query(By.directive(NgModel));
+
+      ngModel.triggerEventHandler('ngModelChange', 'Mr. Nice');
+      fixture.detectChanges();
+
+      expect(getHeadingText(fixture)).toContain('Mr. Nice');
     });
-  }));
+  });
 
-  // Demonstrates using `async` and `autoDetectChanges`
-  it(`should have the correct hero's name & id`, async(() => {
+  describe('clicking save', () => {
+    beforeEach(fakeAsync(() => {
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+    }));
 
-    fixture.autoDetectChanges();
-    fixture.whenStable().then(() => {
-      expect(element.querySelector('div').textContent).toContain('id: 3');
-      expect(element.querySelector('div').textContent).toContain('Magneta');
-    });
-  }));
-
-  // Demonstrates using fakeAsync
-  it(`should have the correct hero's name & id`, fakeAsync(() => {
-
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    expect(element.querySelector('div').textContent).toContain('id: 3');
-    expect(element.querySelector('div').textContent).toContain('Magneta');
-  }));
-
-  it(`should call update on the hero service when save is clicked`, fakeAsync(() => {
-
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    fixture.debugElement.queryAll(By.css('button'))[1].triggerEventHandler('click', null);
-
-    expect(mockHeroService.update).toHaveBeenCalledWith(heroes[0]);
-  }));
-
-  it(`should change the hero's name when the input box is set`, fakeAsync(() => {
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    let el = fixture.debugElement.query(By.css('input')).nativeElement;
-    el.value = 'Mr. Nice';
-    el.dispatchEvent(newEvent('input')); // this must be called so that detectChanges will know that something has changed
-    fixture.detectChanges();
-
-    expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toContain('Mr. Nice');
-  }));
-
+    xit(`should update the hero service`, fakeAsync(() => {
+      const button = getSaveButton(fixture);
+      button.triggerEventHandler('click', null);
+      expect(mockHeroService.update).toHaveBeenCalledWith(heroes[0]);
+    }));
+  });
 });
 
-function newEvent(eventName: string, bubbles = false, cancelable = false) {
+function createEvent(eventName: string, bubbles = false, cancelable = false) {
   let evt = document.createEvent('CustomEvent');  // MUST be 'CustomEvent'
   evt.initCustomEvent(eventName, bubbles, cancelable, null);
   return evt;
 }
 
+function getHeadingText(fixture) {
+  return fixture.debugElement.query(By.css('h2')).nativeElement.textContent;
+}
+
+function getSaveButton(fixture) {
+  return fixture.debugElement.queryAll(By.css('button'))[1];
+}
