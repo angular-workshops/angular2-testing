@@ -7,16 +7,16 @@ import { HttpModule }    from '@angular/http';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService }  from './shared/in-memory-data.service';
 
-import { AppComponent }         from './app.component';
-import { DashboardComponent }   from './dashboard.component';
-import { HeroesComponent }      from './heroes.component';
-import { HeroDetailComponent }  from './hero-detail.component';
-import { HeroService }          from './hero.service';
-import { HeroSearchComponent }  from './hero-search.component';
+import { AppComponent }         from './app.component/app.component';
+import { DashboardComponent }   from './dashboard.component/dashboard.component';
+import { HeroesComponent }      from './heroes.component/heroes.component';
+import { HeroDetailComponent }  from './hero-detail.component/hero-detail.component';
+import { HeroService }          from './hero.service/hero.service';
+import { HeroSearchComponent }  from './hero-search.component/hero-search.component';
 import { routing }              from './app.routing';
-import { ExponentialStrengthPipe } from './exponential-strength.pipe';
+import { ExponentialStrengthPipe } from './exponential-strength.pipe/exponential-strength.pipe';
 
 @NgModule({
   imports: [
