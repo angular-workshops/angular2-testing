@@ -1,11 +1,11 @@
 import { TestBed, fakeAsync, tick, async, ComponentFixture } from '@angular/core/testing';
 import { HeroDetailComponent } from './hero-detail.component';
-import { HeroService } from './hero.service';
+import { HeroService } from '../hero.service/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { FormsModule, NgModel }   from '@angular/forms';
 
-fdescribe('HeroDetailComponent (shallow tests)', () => {
+describe('HeroDetailComponent (shallow tests)', () => {
   let fixture: ComponentFixture<HeroDetailComponent>;
   let component: HeroDetailComponent;
   let element,  mockHeroService;

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { ResponseOptions, Response } from '@angular/http';
 import { HeroSearchService } from './hero-search.service';
-import { Hero } from './hero';
+import { Hero } from '../shared/hero';
 
 describe('HeroSearchService', () => {
 

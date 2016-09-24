@@ -3,8 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HeroService } from './hero.service';
-import { ExponentialStrengthPipe } from './exponential-strength.pipe';
+import { HeroService } from '../hero.service/hero.service';
+import { ExponentialStrengthPipe } from '../exponential-strength.pipe/exponential-strength.pipe';
 
 let mockHeroService = { getHeroes: () => {} };
 let mockRouter = jasmine.createSpyObj('router', ['navigate']);
