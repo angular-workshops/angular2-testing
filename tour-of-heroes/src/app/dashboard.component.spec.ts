@@ -1,10 +1,8 @@
-/* tslint:disable:no-unused-variable */
-
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DashboardComponent } from './dashboard.component';
 import { Router } from '@angular/router';
-import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HeroService } from './hero.service';
 import { ExponentialStrengthPipe } from './exponential-strength.pipe';
 
