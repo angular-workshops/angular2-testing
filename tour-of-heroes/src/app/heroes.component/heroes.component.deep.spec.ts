@@ -42,11 +42,10 @@ describe('HeroDetailComponent (deep tests)', () => {
     fixture.detectChanges();
   }));
 
-  it('should show the hero id and name for each hero', () => {
+  it('should render each hero as a HeroComponent', () => {
     const heroComponents = fixture.debugElement.queryAll(By.directive(HeroComponent));
     expect(heroComponents.length).toEqual(HEROES.length);
-
-    expect(heroComponents[0].nativeElement.textContent).toContain('Magneta');
+    expect(heroComponents[0].componentInstance.hero).toBe(HEROES[0]);
   });
 
   it('should delete the hero when the HeroComponent outputs the "delete" event', () => {
