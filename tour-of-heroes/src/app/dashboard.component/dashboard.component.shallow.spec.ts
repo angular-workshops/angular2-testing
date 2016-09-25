@@ -12,9 +12,6 @@ let mockRouter = jasmine.createSpyObj('router', ['navigate']);
 describe('dashboard.component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
         DashboardComponent,
         ExponentialStrengthPipe
