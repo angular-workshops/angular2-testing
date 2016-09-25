@@ -12,6 +12,7 @@ env:
     - SAUCE_ACCESS_KEY=72e4f85f-4e6b-4971-b8c5-f6707308f63e
     - SAUCE_USERNAME="mgiambalvo"
     - SAUCE_CONNECT_VERSION="4.4.0"
+    - LOGS_DIR="/tmp/logs"
   matrix:
     - CI_MODE=local
     - CI_MODE=saucelabs
@@ -23,11 +24,10 @@ cache:
 install:
   - cd tour-of-heroes
   - npm install
+  - cd ..
 
 before_script:
   - ./scripts/travis_setup.sh
 
 script:
-  - npm run lint
-  - npm run test -- --watch=false
-  - npm run travis
+  - ./scripts/travis_test.sh
