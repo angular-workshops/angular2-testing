@@ -7,7 +7,7 @@ import { Hero } from '../shared/hero';
 @Component({ selector: 'app-test', template: `<app-hero [hero]="hero" (delete)="onDelete($event)"></app-hero>`})
 class TestContainerComponent {
   hero: Hero;
-  onDelete = jasmine.createSpy('onDelete');
+  onDeleteClick = jasmine.createSpy('onDelete');
 }
 
 describe('HeroComponent', () => {
@@ -32,9 +32,13 @@ describe('HeroComponent', () => {
     fixture.detectChanges();
 
     const button = fixture.debugElement.query(By.css('button'));
-    button.triggerEventHandler('click', null);
+    button.triggerEventHandler('click', { stopPropagation: jasmine.createSpy('stopPropagation') });
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.onDelete).toHaveBeenCalledWith(fixture.componentInstance.hero);
+    const deleteClickSpy = fixture.componentInstance.onDeleteClick;
+    expect(deleteClickSpy).toHaveBeenCalled();
+
+    const clickEvent = deleteClickSpy.mostRecentCall.args[0];
+    expect(clickEvent.stopPropagation).toHaveBeenCalled();
   });
 });
