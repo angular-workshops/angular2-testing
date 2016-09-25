@@ -13,6 +13,7 @@ import { InMemoryDataService }  from './shared/in-memory-data.service';
 import { AppComponent }         from './app.component/app.component';
 import { DashboardComponent }   from './dashboard.component/dashboard.component';
 import { HeroesComponent }      from './heroes.component/heroes.component';
+import { HeroComponent }      from './hero.component/hero.component';
 import { HeroDetailComponent }  from './hero-detail.component/hero-detail.component';
 import { HeroService }          from './hero.service/hero.service';
 import { HeroSearchComponent }  from './hero-search.component/hero-search.component';
@@ -32,6 +33,7 @@ import { routing }              from './app.routing';
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
+    HeroComponent,
     HeroSearchComponent,
     ExponentialStrengthPipe
   ],

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
-
-import { Hero }                from '../shared/hero';
-import { HeroService }         from '../hero.service/hero.service';
+import { Router } from '@angular/router';
+import { Hero } from '../shared/hero';
+import { HeroService } from '../hero.service/hero.service';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls:  ['./heroes.component.css']
+  styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
@@ -15,12 +14,15 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     private heroService: HeroService,
-    private router: Router) { }
+    private router: Router) {
+    console.log(1.5);
+  }
 
   getHeroes(): void {
+    console.log(2)
     this.heroService
-        .getHeroes()
-        .then(heroes => this.heroes = heroes);
+      .getHeroes()
+      .then(heroes => this.heroes = heroes);
   }
 
   add(name: string): void {
@@ -35,11 +37,11 @@ export class HeroesComponent implements OnInit {
 
   delete(hero: Hero): void {
     this.heroService
-        .delete(hero.id)
-        .then(() => {
-          this.heroes = this.heroes.filter(h => h !== hero);
-          if (this.selectedHero === hero) { this.selectedHero = null; }
-        });
+      .delete(hero.id)
+      .then(() => {
+        this.heroes = this.heroes.filter(h => h !== hero);
+        if (this.selectedHero === hero) { this.selectedHero = null; }
+      });
   }
 
   ngOnInit(): void {
