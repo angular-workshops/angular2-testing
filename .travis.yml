@@ -4,18 +4,20 @@ language: node_js
 os:
   - linux
 
+addons:
+  sauce_connect:
+    username: "mgiambalvo"
+  jwt:
+    secure: "EYOYWOj2TyoPvUIl0ZCAbBwdvwj6gZV+hYIpILm8sp6Dtgp6+5NFvK1+5x4d4sIBjSKhstJFjtd7SMgvFeffEyoixtTvApArb4RI2g2gOHgxG5TkEysIOHp3TGUSKBM+u9wB3txJxH93jQdqbp1MuPI1lcoOXER8UmfKIKxjN7mAbXJ6+oEAWEv8c5hvxGP1BrXA5U6JTpcS5pQdwkm7mbAlH0PQ6ogOPuVCBh0eZDUp/s588GT1OSqLvhUoHJ6+w7D0QXUly/XCz+B7ppKgQtdfLrrSCGXilQT7SyQ78UZ5tqFdQeH0wrO2rzwePQ30N1EC7HbQCRlRNb866aB4ykgmJnHEURs0NsuHqpZmT4rX2NBZPOZC0SVaqrNSwmBYrIKjmyN/z6OoCs9RPqsM7TN57x7cCZL5bX8LyOfgdV/CGE2vkO7HG+t/dykEqKCYPIMcu6/fSRT99HrZSRw/4NKQPT/fn+n8phTh0gFqpODl2/weBLm41zTH73dzorwhHEN8MtVFJbjcTxdYRMwFHKkOhJTLS0W0nMXCNDxj9p0iCfH9Os6U6CdRq3UnZGI7I2QnFBM+wE2VpAHZzhXcWJushEfKJi4VndxnGbOPby38U+DU2SyNaksyNaEN0uqfHA+QLtfoIcfMXKRTW4L69U+OCSNj3WRMtkJt6ubaJ/M="
+
 env:
   global:
     - DBUS_SESSION_BUS_ADDRESS=/dev/null
     - DISPLAY=:99.0
     - CHROME_BIN=chromium-browser
-    - SAUCE_ACCESS_KEY=72e4f85f-4e6b-4971-b8c5-f6707308f63e
-    - SAUCE_USERNAME="mgiambalvo"
-    - SAUCE_CONNECT_VERSION="4.4.0"
-    - LOGS_DIR="/tmp/logs"
   matrix:
-    - CI_MODE=local
-    - CI_MODE=saucelabs
+    - CI_MODE=local_e2e
+    - CI_MODE=saucelabs_e2e
 
 cache:
   directories:
