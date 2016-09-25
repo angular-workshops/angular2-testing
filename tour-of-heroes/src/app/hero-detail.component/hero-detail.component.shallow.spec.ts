@@ -1,25 +1,30 @@
-import { TestBed, fakeAsync, tick, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick, async, ComponentFixture, inject } from '@angular/core/testing';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from '../hero.service/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { FormsModule, NgModel }   from '@angular/forms';
+import { Location } from '@angular/common';
+import { SpyLocation } from '@angular/common/testing';
 
 describe('HeroDetailComponent (shallow tests)', () => {
   let fixture: ComponentFixture<HeroDetailComponent>;
   let component: HeroDetailComponent;
-  let element,  mockHeroService;
+  let element;
   let heroes = [
     {id: 3, name: 'Magneta', strength: 4},
     {id: 4, name: 'Dynama', strength: 2}
   ];
 
   beforeEach(() => {
-    mockHeroService = { getHero: () => {}, update: () => {} };
-    spyOn(mockHeroService, 'getHero').and.returnValue(Promise.resolve(heroes[0]));
-    spyOn(mockHeroService, 'update').and.returnValue(Promise.resolve());
 
-    const mockActiveRoute = {params: [{id: '3'}]};
+    const mockHeroService = {
+      getHero: () => Promise.resolve(heroes[0]),
+      update: () => Promise.resolve()
+    };
+    const mockActivatedRoute = {
+      params: [ { id: '3' } ]
+    };
 
     TestBed.configureTestingModule({
       imports: [
@@ -30,9 +35,10 @@ describe('HeroDetailComponent (shallow tests)', () => {
         HeroDetailComponent
       ],
       providers: [
-        // useValue creates a clone of our service object
-        { provide: HeroService, useFactory: () => mockHeroService },
-        { provide: ActivatedRoute, useFactory: () => mockActiveRoute }
+        // useValue may create a clone of the objects passed
+        { provide: HeroService, useValue: mockHeroService },
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Location, useFactory: () => new SpyLocation() }
       ],
       schemas: [
         // NO_ERRORS_SCHEMA will hide that angular doesn't know about ngModel
@@ -104,17 +110,27 @@ describe('HeroDetailComponent (shallow tests)', () => {
   });
 
   describe('clicking save', () => {
+    let saveButton;
     beforeEach(fakeAsync(() => {
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
+      saveButton = getSaveButton(fixture);
     }));
 
-    xit(`should update the hero service`, fakeAsync(() => {
-      const button = getSaveButton(fixture);
-      button.triggerEventHandler('click', null);
-      expect(mockHeroService.update).toHaveBeenCalledWith(heroes[0]);
+    it(`should update the hero service`, inject([HeroService], (heroService) => {
+      spyOn(heroService, 'update').and.callThrough();
+      saveButton.triggerEventHandler('click', null);
+      expect(heroService.update).toHaveBeenCalledWith(heroes[0]);
     }));
+
+    it(`should navigate back`, fakeAsync(inject([Location], (location: Location) => {
+      spyOn(location, 'back');
+      saveButton.triggerEventHandler('click', null);
+      // we need this `tick` because the location.back is called in a then handler for the promise returned by heroService.update()
+      tick();
+      expect(location.back).toHaveBeenCalled();
+    })));
   });
 });
 

@@ -5,12 +5,14 @@ describe('HeroDetailComponent (isolated tests)', () => {
   const mockHero = {id: 3, name: 'Magneta', strength: 4};
   let mockHeroService;
   let mockRoute;
+  let mockLocation;
   let component: HeroDetailComponent;
 
   beforeEach(() => {
     mockHeroService = jasmine.createSpyObj('heroService', ['getHero', 'update']);
+    mockLocation = jasmine.createSpyObj('location', ['back']);
     mockRoute = {params: []};
-    component = new HeroDetailComponent(mockHeroService, mockRoute);
+    component = new HeroDetailComponent(mockHeroService, mockLocation, mockRoute);
   });
 
   describe('ngOnInit', () => {
@@ -38,5 +40,12 @@ describe('HeroDetailComponent (isolated tests)', () => {
       expect(mockHeroService.update).toHaveBeenCalledWith(mockHero);
       expect(component.goBack).toHaveBeenCalled();
     }));
+  });
+
+  describe('goBack', () => {
+    it('should call back on the window.history object', () => {
+      component.goBack();
+      expect(mockLocation.back).toHaveBeenCalled();
+    });
   });
 });
