@@ -3,20 +3,33 @@ sudo: required
 language: node_js
 os:
   - linux
+
+addons:
+  sauce_connect:
+    username: "notkit"
+  jwt:
+    secure: "r7M8cgpDqP8NeJThQBCfqsCJDOVI/+HASWjirtHiKjnPGNu7hgPdAISn+gQP+w5RwC8HNysprNKNzSHm+wcUACZH+3zBxj9lVHB7V1dXcWV1W/kegvjaXnpo45V/1pJRft8EVKZSExncGegLz/RkM01d/b/EZvXSzViVoSgXWr4wXrRnH0yshqH1DswrDGfh31HpCP7XA75g9nPohZrJaX0ChsWQS5wUKKNRsbwdyNV5A2tl1BlJnYxMXMysbiiXBj++21lltSBJa5hT1GQKsJ9pGVyWdopWYXFFgRtxn4AJwM9N9e6Ns44m3sP6v3uYyYtlTgB+TBECHi4u5FrTaSiFgFpjk6Z+ljihrZ/iPWn1MQpfjuPlKdwOd6hfFLd79M/uw1Ih+0q0HGER01QwjvrA7nGCLu74SED60cu9UuJqSBQJceZ5nHmde3GMJHbw/u4RRiuWSU/7W/DoqGCLh/Q0FSYBeKTgN81NesUJp/Vk0xk5sPdRo3JuHDzqsFe6+6NMkqo46h3/G6ChfAhgyUAlPwPgVgWR8j6RHbZWgxsRll2KwmPXxzqoSct9OSsUQP4cIO1PrvmbZv933cPYppjjLKOV9RQsmUClZmzRqShcKB1Xt3ITdywTLaG/mKo5SrlQdol3y3Nkee+lzOpl8O91gNdHbgoYhpM+5OSoar8="
+
 env:
   global:
     - DBUS_SESSION_BUS_ADDRESS=/dev/null
     - DISPLAY=:99.0
     - CHROME_BIN=chromium-browser
+  matrix:
+    - CI_MODE=local_e2e
+    - CI_MODE=saucelabs_e2e
+
 cache:
   directories:
     - tour-of-heroes/node_modules
-before_script:
-  - sh -e /etc/init.d/xvfb start
+
 install:
   - cd tour-of-heroes
   - npm install
+  - cd ..
+
+before_script:
+  - ./scripts/travis_setup.sh
+
 script:
-  - npm run lint
-  - npm run test -- --watch=false
-  - npm run travis
+  - ./scripts/travis_test.sh

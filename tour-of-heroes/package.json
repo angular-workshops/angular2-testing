@@ -8,9 +8,7 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor",
-    "pretravis": "ng build",
-    "travis": "concurrently --success first --kill-others \"lite-server\" \"npm run e2e\""
+    "e2e": "protractor"
   },
   "private": true,
   "dependencies": {
