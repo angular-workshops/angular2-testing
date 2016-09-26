@@ -2,9 +2,8 @@
 
 set -ex -o pipefail
 cd `dirname $0`
-source ./env.sh
 
 # Start Xvfb when running locally.
 if [[ ${TRAVIS} && (${CI_MODE} == "local") ]]; then
-  /etc/init.d/xvfb start
+  sh -e /etc/init.d/xvfb start
 fi

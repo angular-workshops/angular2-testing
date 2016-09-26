@@ -2,7 +2,6 @@
 
 set -ex -o pipefail
 cd `dirname $0`
-source ./env.sh
 cd ../tour-of-heroes
 
 ng build
