@@ -4,7 +4,7 @@ var testName = 'Tour of Heroes Smoke Tests'
 
 var ciConfig = {
   // Note that seleniumAddress must be unset in order for SauceLabs to work.
-  // seleniumAddress: "http://localhost:4445/wd/hub",
+  seleniumAddress: false,
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
 
@@ -25,14 +25,6 @@ var ciConfig = {
     'name': testName,
     'version': '44',
     'selenium-version': '2.53.1'
-  }, {
-    'browserName': 'safari',
-    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-    'build': process.env.TRAVIS_BUILD_NUMBER,
-    'name': testName,
-    'version': '8',
-    'selenium-version': '2.44.0' // Use an old version because Safari has
-                                 // issues loading pages after 2.44.
   }, {
     'browserName': 'safari',
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
