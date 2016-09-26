@@ -4,7 +4,7 @@ var testName = 'Tour of Heroes Smoke Tests'
 
 var ciConfig = {
   // Note that seleniumAddress must be unset in order for SauceLabs to work.
-  // seleniumAddress: "http://localhost:4445/wd/hub",
+  seleniumAddress: false,
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
 
