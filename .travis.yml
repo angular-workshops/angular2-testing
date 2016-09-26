@@ -16,8 +16,8 @@ env:
     - DISPLAY=:99.0
     - CHROME_BIN=chromium-browser
   matrix:
-    - CI_MODE=local
-    - CI_MODE=saucelabs
+    - CI_MODE=local_e2e
+    - CI_MODE=saucelabs_e2e
 
 cache:
   directories:
